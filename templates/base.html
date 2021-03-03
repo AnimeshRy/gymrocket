@@ -1,0 +1,28 @@
+{% load static %}
+{% load bootstrap4 %}
+
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gym Rocket</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="shadow-none p-3 mb-5 bg-light rounded">No shadow</div>
+    <h1>
+        Testing static, works ?
+    </h1>
+
+    <!-- {% include 'navbar.html' %} -->
+    {% block content %}
+    {% endblock content %}
+
+    <script src="{% static 'js/test.js' %}"></script>
+</body>
+</html>

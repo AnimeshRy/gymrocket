@@ -1,0 +1,16 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = "==3.1"
+python-dotenv = "*"
+django-bootstrap4 = "*"
+django-bootstrap-datepicker-plus = "*"
+
+[dev-packages]
+autopep8 = "*"
+
+[requires]
+python_version = "3.8"
