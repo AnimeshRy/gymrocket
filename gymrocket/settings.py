@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
+from django.conf.urls.static import static
 import dotenv
 
 dotenv.load_dotenv()
@@ -43,7 +44,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # third party apps
-    'bootstrap4',
+    'crispy_forms',
+    'crispy_tailwind',
 
     # local apps
     'members',
@@ -117,7 +119,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Calcutta'
 
 USE_I18N = True
 
@@ -125,12 +127,28 @@ USE_L10N = True
 
 USE_TZ = True
 
+# After succesful login go to path:
+LOGIN_REDIRECT_URL = '/'
+# After Logout
+LOGOUT_REDIRECT_URL = '/'
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
-
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR / "static"
 ]
+
+STATIC_ROOT = 'static_root'
+
+CRISPY_TEMPLATE_PACK = 'tailwind'
+CRISPY_ALLOWED_TEMPLATE_PACKS = 'tailwind'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+MEDIA_URL = '/media/'
+
+PHOTOS_FILES = os.path.normpath(MEDIA_ROOT+'/photos')
+PHOTOS_URL = os.path.normpath(MEDIA_URL+'/photos/')

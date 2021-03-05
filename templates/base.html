@@ -1,8 +1,4 @@
 {% load static %}
-{% load bootstrap4 %}
-
-{% bootstrap_css %}
-{% bootstrap_javascript jquery='full' %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -10,19 +6,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gym Rocket</title>
+    <title>GymRocket {% block title %}{% endblock title %}</title>
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}"type="image/x-icon">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body>
-    <div class="shadow-none p-3 mb-5 bg-light rounded">No shadow</div>
-    <h1>
-        Testing static, works ?
-    </h1>
-
-    <!-- {% include 'navbar.html' %} -->
-    {% block content %}
-    {% endblock content %}
-
+        {% include 'navbar.html' %}
+    <div class="max-w-7xl mx-auto">
+        {% block content %}
+        {% endblock content %}
+    </div>
+    
     <script src="{% static 'js/test.js' %}"></script>
 </body>
 </html>

@@ -6,8 +6,9 @@ name = "pypi"
 [packages]
 django = "==3.1"
 python-dotenv = "*"
-django-bootstrap4 = "*"
 django-bootstrap-datepicker-plus = "*"
+django-crispy-forms = "*"
+crispy-tailwind = "*"
 
 [dev-packages]
 autopep8 = "*"
