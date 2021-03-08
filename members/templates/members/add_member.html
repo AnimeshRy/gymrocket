@@ -1,8 +1,7 @@
 {% extends "base.html" %} 
 {% load tailwind_filters %}
 
-{% block title %}
-
+{% block title %}- New Member
 {% endblock title %}
 
 {% block content %} 
@@ -22,7 +21,7 @@
 
 {% block script %} 
 <script>
-  addmemAchor = document.getElementById('add-mem');
+  let addmemAchor = document.getElementById('add-mem');
   addmemAchor.classList.add('bg-gray-900','text-white')
 </script>
 {% endblock script %} 

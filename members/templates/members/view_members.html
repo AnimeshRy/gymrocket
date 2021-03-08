@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block title %}- Members{% endblock title %}
+
 {% block content %}
 <div class="flex flex-col">
     <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -102,7 +104,7 @@
 
 {% block script %} 
 <script>
-  viewMemAnchor = document.getElementById('view-mem');
+  let viewMemAnchor = document.getElementById('view-mem');
   viewMemAnchor.classList.add('bg-gray-900','text-white')
 </script>
 {% endblock script %} 
