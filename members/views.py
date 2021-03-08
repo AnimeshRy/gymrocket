@@ -28,6 +28,6 @@ class AddMemberView(LoginRequiredMixin, CreateView):
         return reverse("members:member-list")
 
     def form_valid(self, form):
-        form.instance.registration_upto = form.cleaned_data['registration_date'] + delta.relativedelta(
+        form.instance.registration_upto = parser.parse(form.cleaned_data['registration_date']) + delta.relativedelta(
             months=int(form.cleaned_data['subscription_period']))
         return super().form_valid(form)

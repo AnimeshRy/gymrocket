@@ -7,11 +7,15 @@
 
 {% block content %} 
 <div class="max-w-3xl mx-auto">
-    <h2 class="text-2xl text-gray-800 mx-auto mb-5">Add Member</h2>
+  <div class="flex justify-center">
+    <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate">
+      New Member
+    </h2>
+  </div>
     <form method="POST">
         {% csrf_token %}
         {{ form|crispy }}
-        <button class="w-full bg-yellow-500 hover:bg-yellow-600 px-3 py-2 rounded-md text-white" type="submit">Submit</button>
+        <button class="mb-5 w-full bg-gray-800 hover:bg-gray-900 px-3 py-2 rounded-md text-white" type="submit">Submit</button>
         
     </form>
 {% endblock content %}
