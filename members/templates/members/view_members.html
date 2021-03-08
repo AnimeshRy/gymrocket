@@ -13,10 +13,10 @@
                   Name
                 </th>
                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  DOB
+                  batch
                 </th>
                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Registration Date
+                  Amount
                 </th>
                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Registration Upto
@@ -59,10 +59,10 @@
                   </div>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap">
-                  <div class="text-sm text-gray-900">{{ member.dob }}</div>
+                  <div class="text-sm text-gray-900">{{ member.get_batch_display }}</div>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap">
-                  <div class="text-sm text-gray-900">{{ member.registration_date }}</div>
+                  <div class="text-sm text-gray-900">{{ member.amount }}</div>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap">
                   <div class="text-sm text-gray-900">{{ member.registration_upto }}</div>
@@ -99,3 +99,10 @@
   </div>
   
 {% endblock content %}
+
+{% block script %} 
+<script>
+  viewMemAnchor = document.getElementById('view-mem');
+  viewMemAnchor.classList.add('bg-gray-900','text-white')
+</script>
+{% endblock script %} 
