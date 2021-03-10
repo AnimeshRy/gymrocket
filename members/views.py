@@ -7,10 +7,21 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 import dateutil.relativedelta as delta
 import dateutil.parser as parser
 from django.urls import reverse
+from wallpaper.models import Wallpaper
 
 
 class LandingPage(TemplateView):
     template_name = "landing_page.html"
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        if Wallpaper.objects.filter()[:1].exists():
+            wallpaper = Wallpaper.objects.filter()[:1].get()
+            context.update({
+                'wallpaper': wallpaper
+            })
+
+        return context
 
 
 def view_members(request):

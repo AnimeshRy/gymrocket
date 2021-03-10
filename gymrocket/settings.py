@@ -49,6 +49,7 @@ INSTALLED_APPS = [
 
     # local apps
     'members',
+    'wallpaper',
 ]
 
 MIDDLEWARE = [
@@ -154,3 +155,6 @@ MEDIA_URL = '/media/'
 
 PHOTOS_FILES = os.path.normpath(MEDIA_ROOT+'/photos')
 PHOTOS_URL = os.path.normpath(MEDIA_URL+'/photos/')
+
+WALLPAPER_FILES = os.path.normpath(MEDIA_ROOT+'/wallpaper')
+WALLPAPER_URL = os.path.normpath(MEDIA_URL+'/wallpaper/')

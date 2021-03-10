@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Change Wallpaper
+{% endblock %}
+
+{% block content %}
+{% if success %}
+<div class="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md" role="alert">
+    <div class="flex">
+      <div class="py-1"><svg class="fill-current h-6 w-6 text-teal-500 mr-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z"/></svg></div>
+      <div>
+        <p class="font-bold">{{ success }}</p>
+      </div>
+    </div>
+  </div>
+{% endif %}
+
+<div class="mb-4 flex justify-center">
+    <h1 class="font-mono text-4xl">Change Wallpaper Here</h1>
+</div>
+
+<div class="mt-5 flex justify-center">
+    
+    <form method="POST" class="w-full max-w-sm" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="flex items-center justify-center border-b border-teal-500 py-2">
+                
+            <label class="block text-sm font-medium text-gray-700 mr-3" for="photo">{{ form.photo.label }}</label>
+            <span class="inline-block h-12 w-12 rounded-full overflow-hidden bg-gray-100 mr-3">
+                <svg class="h-full w-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
+                </svg>
+              </span>
+                {{ form.photo }}
+
+        </div>
+        <div class="mt-4 flex justify-center">
+            <button class="w-1/2 bg-gray-800 hover:bg-gray-900 px-3 py-2 rounded-md text-white rounded" type="submit" id="submit">
+                Change
+              </button>
+        </div>
+      </form>
+</div>
+
+{% endblock %}
