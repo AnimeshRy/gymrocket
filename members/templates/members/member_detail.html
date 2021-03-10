@@ -1,0 +1,164 @@
+{% extends "base.html" %} 
+{% load static %} 
+
+{% block title %}Member - {{ member.first_name }} {% endblock title %} 
+
+{% block content %} 
+<div class="container mx-auto my-5 p-5">
+    <div class="md:flex no-wrap md:-mx-2 ">
+        <!-- Left Side -->
+        <div class="w-full md:w-3/12 md:mx-2">
+            <!-- Profile Card -->
+            <div class="bg-white p-3 border-t-4 border-green-400">
+                <div class="image overflow-hidden">
+                    {% if member.photo %}
+                    <img class="h-auto w-full mx-auto"
+                        src="{{ member.photo.url }}"
+                        alt="member-photo">
+                    {% else %}
+                    <img class="h-auto w-full mx-auto"
+                        src="/media/default.jpg"
+                        alt="member-photo">
+                    {% endif %}
+                </div>
+                <h1 class="text-gray-900 font-bold text-xl leading-8 my-1">{{ member.first_name|capfirst }} {{ member.last_name|capfirst }}</h1>
+                <h3 class="text-gray-600 font-lg text-semibold leading-6">Medical History</h3>
+                <p class="text-sm text-gray-500 hover:text-gray-600 leading-6">{{ member.medical_history }}</p>
+                <ul
+                    class="bg-gray-100 text-gray-600 hover:text-gray-700 hover:shadow py-2 px-3 mt-3 divide-y rounded shadow-sm">
+                    <li class="flex items-center py-3">
+                        <span>Fee Status</span>
+                        {% if member.fee_status == 'paid' %}
+                        <span class="ml-auto"><span
+                                class="bg-green-500 py-1 px-2 rounded text-white text-sm">Paid</span></span>
+                        {% else %} 
+                        <span class="ml-auto"><span 
+                            class="bg-red-500 py-1 px-2 rounded text-white text-sm">Pending</span></span>
+                        {% endif %}
+                    </li>
+                    <li class="flex items-center py-3">
+                        <span>Member since</span>
+                        <span class="ml-auto">{{ member.registration_date|date:"d/M/Y" }}</span>
+                    </li>
+                </ul>
+            </div>
+            <!-- End of profile card -->
+            <div class="my-4"></div>
+            <!-- End of friends card -->
+        </div>
+        <!-- Right Side -->
+        <div class="w-full md:w-9/12 mx-2 h-64">
+            <!-- Profile tab -->
+            <!-- About Section -->
+            <div class="bg-white p-3 shadow-sm rounded-sm">
+                <div class="flex items-center space-x-2 font-semibold text-gray-900 leading-8">
+                    <span clas="text-green-500">
+                        <svg class="h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                        </svg>
+                    </span>
+                    <span class="tracking-wide">Personal Information</span>
+                </div>
+                <div class="text-gray-700">
+                    <div class="grid md:grid-cols-2 text-sm">
+                        <div class="grid grid-cols-2">
+                            <div class="px-4 py-2 font-semibold">First Name</div>
+                            <div class="px-4 py-2">{{ member.first_name|capfirst }}</div>
+                        </div>
+                        <div class="grid grid-cols-2">
+                            <div class="px-4 py-2 font-semibold">Last Name</div>
+                            <div class="px-4 py-2">{{ member.last_name|capfirst }}</div>
+                        </div>
+                        <div class="grid grid-cols-2">
+                            <div class="px-4 py-2 font-semibold">Gender</div>
+                            <div class="px-4 py-2">{{ member.gender }}</div>
+                        </div>
+                        <div class="grid grid-cols-2">
+                            <div class="px-4 py-2 font-semibold">Contact No.</div>
+                            <div class="px-4 py-2">+91 {{ member.mobile_number }}</div>
+                        </div>
+                        <div class="grid grid-cols-2">
+                            <div class="px-4 py-2 font-semibold">Current Address</div>
+                            <div class="px-4 py-2">{{ member.address }}</div>
+                        </div>
+                        <div class="grid grid-cols-2">
+                            <div class="px-4 py-2 font-semibold">Email.</div>
+                            <div class="px-4 py-2">
+                                <a class="text-blue-800" href="mailto:{{ member.email }}">{{ member.email }}</a>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2">
+                            <div class="px-4 py-2 font-semibold">Birthday</div>
+                            <div class="px-4 py-2">Feb 06, 1998</div>
+                        </div>
+                        <div class="grid grid-cols-2">
+                            <div class="px-4 py-2 font-semibold">Age</div>
+                            <div class="px-4 py-2">{{ member.calculate_age }} years old.</div>
+                        </div>
+                    </div>
+                </div>
+                <button
+                    class="block w-full text-blue-800 text-sm font-semibold rounded-lg hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3 my-4">Export</button>
+            </div>
+            <!-- End of about section -->
+
+            <div class="my-4"></div>
+
+            <div class="bg-white p-3 shadow-sm rounded-sm">
+                <div class="flex items-center space-x-2 font-semibold text-gray-900 leading-8">
+                    <span clas="text-green-500">
+                        <svg class="h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg>
+                    </span>
+                    <span class="tracking-wide">Membership Information</span>
+                </div>
+                <div class="text-gray-700">
+                    <div class="grid md:grid-cols-2 text-sm">
+                        <div class="grid grid-cols-2">
+                            <div class="px-4 py-2 font-semibold">Registration Date</div>
+                            <div class="px-4 py-2">{{ member.registration_date|date:"D d M Y" }}</div>
+                        </div>
+                        <div class="grid grid-cols-2">
+                            <div class="px-4 py-2 font-semibold">Subscription Type</div>
+                            <div class="px-4 py-2">{{ member.get_subscription_type_display }}</div>
+                        </div>
+                        <div class="grid grid-cols-2">
+                            <div class="px-4 py-2 font-semibold">Registration Upto</div>
+                            <div class="px-4 py-2">{{ member.registration_upto|date:"D d M Y" }}</div>
+                        </div>
+                        <div class="grid grid-cols-2">
+                            <div class="px-4 py-2 font-semibold">Subscription Period</div>
+                            <div class="px-4 py-2">{{ member.get_subscription_period_display }}</div>
+                        </div>
+                        <div class="grid grid-cols-2">
+                            <div class="px-4 py-2 font-semibold">Amount Paid</div>
+                            <div class="px-4 py-2">₹ {{ member.amount }}</div>
+                        </div>
+                        <div class="grid grid-cols-2">
+                            <div class="px-4 py-2 font-semibold">Batch</div>
+                            <div class="px-4 py-2">{{ member.get_batch_display }}</div>
+                        </div>
+                        <div class="grid grid-cols-2">
+                            <div class="px-4 py-2 font-semibold">Membership Status</div>
+                            <div class="px-4 py-2">{{ member.get_stop_display }}</div>
+                        </div>
+                        <div class="grid grid-cols-2">
+                            <div class="px-4 py-2 font-semibold">Fee Status</div>
+                            <div class="px-4 py-2">{{ member.get_fee_status_display }}</div>
+                        </div>
+                    </div>
+                </div>
+                <button
+                    class="block w-full text-blue-800 text-sm font-semibold rounded-lg hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3 my-4"><a href="{% url 'members:delete-member' member.pk %}">Remove Member</a></button>
+            </div>
+
+            <!-- End of profile tab -->
+        </div>
+    </div>
+</div>
+</div>
+{% endblock content %}

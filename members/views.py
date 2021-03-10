@@ -1,11 +1,10 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView, CreateView
+from django.views.generic import TemplateView, CreateView, UpdateView, DetailView, DeleteView
 from .models import Member
 from django.contrib.auth.decorators import login_required
-from .forms import AddMemberForm
+from .forms import AddMemberForm, AddMemberUpdateForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 import dateutil.relativedelta as delta
-import dateutil.parser as parser
 from django.urls import reverse
 from wallpaper.models import Wallpaper
 
@@ -39,6 +38,34 @@ class AddMemberView(LoginRequiredMixin, CreateView):
         return reverse("members:member-list")
 
     def form_valid(self, form):
-        form.instance.registration_upto = parser.parse(form.cleaned_data['registration_date']) + delta.relativedelta(
+        form.instance.registration_upto = form.cleaned_data['registration_date'] + delta.relativedelta(
             months=int(form.cleaned_data['subscription_period']))
         return super().form_valid(form)
+
+
+class MemberDetailView(LoginRequiredMixin, DetailView):
+    template_name = 'members/member_detail.html'
+    context_object_name = 'member'
+    queryset = Member.objects.all()
+
+
+class UpdateMemberView(LoginRequiredMixin, UpdateView):
+    template_name = 'members/update_member.html'
+    form_class = AddMemberUpdateForm
+    queryset = Member.objects.all()
+
+    def get_success_url(self) -> str:
+        return reverse("members:member-list")
+
+    def form_valid(self, form):
+        form.instance.registration_upto = form.cleaned_data['registration_date'] + delta.relativedelta(
+            months=int(form.cleaned_data['subscription_period']))
+        return super().form_valid(form)
+
+
+class DeleteMemberView(LoginRequiredMixin, DeleteView):
+    template_name = 'members/member_delete.html'
+    queryset = Member.objects.all()
+
+    def get_success_url(self) -> str:
+        return reverse("members:member-list")

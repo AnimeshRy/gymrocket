@@ -1,0 +1,25 @@
+{% extends "base.html" %} 
+{% load static %}
+
+{% load tailwind_filters %}
+
+{% block title %}- Update Member
+{% endblock title %}
+
+{% block content %} 
+<div class="max-w-3xl mx-auto">
+  <div class="flex justify-center">
+    <h2 class="mt-3 mb-4 text-4xl leading-7 text-gray-900 sm:text-3xl sm:truncate font-mono">
+      Update Member
+    </h2>
+  </div>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button class="mb-5 w-full bg-gray-800 hover:bg-gray-900 px-3 py-2 rounded-md text-white" type="submit">Submit</button>
+        
+    </form>
+{% endblock content %}
+
+{% block script %} 
+{% endblock script %} 

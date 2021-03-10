@@ -1,0 +1,20 @@
+{% extends "base.html" %} 
+{% load static %} 
+{% load tailwind_filters %}
+
+{% block title %} Delete Member {% endblock title %}
+
+{% block content %} 
+    <div class="max-w-lg mx-auto mt-5">
+        <h2 class="text-xl font-medium font-mono">Are you sure you want to delete the lead <i>'{{ member }}'</i> ?</h2>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.crispy }}
+            <button class="w-1/4 mt-3 ml-auto text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded" type="submit">Submit</button>
+        </form>
+
+    <div class="mt-5 py-5 border-t border-gray-200">
+        <a href="{% url 'members:member-list' %}" class="hover:text-indigo-500 mt-3">Go Back To Members</a>
+    </div>
+    </div>
+{% endblock content %}

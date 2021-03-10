@@ -1,6 +1,6 @@
 from django.db import models
-from django.forms import ModelForm
-from django import forms
+from datetime import date
+
 
 SUBSCRIPTION_TYPE_CHOICES = (
     ('gym', 'Gym'),
@@ -39,11 +39,19 @@ BATCH = (
     ('evening', 'Evening'),
 )
 
+GENDER = (
+    ('Male', 'Male'),
+    ('Female', 'Female'),
+    ('Other', 'Other')
+)
+
 
 class Member(models.Model):
     member_id = models.AutoField(primary_key=True)
     first_name = models.CharField(('First Name'), max_length=50)
     last_name = models.CharField(('Last Name'), max_length=50)
+    gender = models.CharField(
+        ('Gender'), choices=GENDER, max_length=7)
     mobile_number = models.CharField(
         ('Mobile Number'), max_length=10, unique=True)
     email = models.EmailField(null=True, blank=True)
@@ -82,6 +90,10 @@ class Member(models.Model):
     photo = models.FileField(upload_to='photos/', blank=True)
     stop = models.IntegerField(
         ('Status'), choices=STATUS, default=STATUS[0][0], blank=True)
+
+    def calculate_age(self):
+        today = date.today()
+        return today.year - self.dob.year - ((today.month, today.day) < (self.dob.month, self.dob.day))
 
     def __str__(self):
         return self.first_name + ' ' + self.last_name

@@ -52,7 +52,9 @@
                     </div>
                     <div class="ml-4">
                       <div class="text-sm font-medium text-gray-900">
+                        <a href="{% url 'members:detail-member' member.pk %}">
                         {{ member.first_name }} {{ member.last_name }}
+                        </a>
                       </div>
                       <div class="text-sm text-gray-500">
                         {{ member.email }}
@@ -88,7 +90,7 @@
                     {% endif %}
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                  <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                  <a href="{% url 'members:update-member' member.pk %}" class="text-indigo-600 hover:text-indigo-900">Edit</a>
                 </td>
               </tr>
               {% endfor %}

@@ -128,8 +128,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-DATE_INPUT_FORMATS = ('%d-%m-%Y', '%Y-%m-%d')
-
 # After succesful login go to path:
 LOGIN_REDIRECT_URL = '/'
 # After Logout
