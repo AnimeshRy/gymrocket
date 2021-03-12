@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     # local apps
     'members',
     'wallpaper',
+    'payments',
 ]
 
 MIDDLEWARE = [

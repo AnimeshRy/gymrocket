@@ -99,8 +99,12 @@
                         </div>
                     </div>
                 </div>
-                <button
-                    class="block w-full text-blue-800 text-sm font-semibold rounded-lg hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3 my-4">Export</button>
+                <div class="flex justify-center">
+                    <button 
+                        class="block w-full text-blue-800 text-sm font-semibold rounded-lg hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3 my-4"><a href="{% url 'members:delete-member' member.pk %}">Delete</a></button>
+                    <button 
+                        class="block w-full text-blue-800 text-sm font-semibold rounded-lg hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3 my-4"><a href="{% url 'members:update-member' member.pk %}">Update</a></button>
+                </div>
             </div>
             <!-- End of about section -->
 
@@ -153,8 +157,58 @@
                     </div>
                 </div>
                 <button
-                    class="block w-full text-blue-800 text-sm font-semibold rounded-lg hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3 my-4"><a href="{% url 'members:delete-member' member.pk %}">Remove Member</a></button>
+                    class="block w-full text-blue-800 text-sm font-semibold rounded-lg hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3 my-4"><a href="#">Export</a></button>
             </div>
+            {% if member_payment == 'No Records' %}
+            <div class="bg-blue-100 text-blue-700 px-4 py-3 rounded" role="alert">
+                <p class="font-bold text-center">No Payment History</p>
+                <p class="text-sm text-center">These isn't any payments made by this member.</p>
+              </div>
+            {% else %}
+            <!-- Payments Table -->
+            <div class="flex justify-center">
+                <h1 class="text-2xl mt-2 mb-2 font-semibold tracking-wide">Payment History</h1>
+            </div>
+            <div class="flex flex-col">
+                <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                  <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+                    <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                      <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                          <tr>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                              Payment Date
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                              Payment Period
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                              Amount
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                        {% for payment in member_payment %}
+                          <tr>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                              <div class="text-sm text-gray-900">{{ payment.payment_date }}</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                              <div class="text-sm text-gray-900">{{ payment.payment_period }}</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                              <div class="text-sm text-gray-900">₹ {{ member.amount }}</div>
+                            </td>
+                          </tr>
+                          {% endfor %}
+                          <!-- More items... -->
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {% endif %}
 
             <!-- End of profile tab -->
         </div>
