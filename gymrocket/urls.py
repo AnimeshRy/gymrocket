@@ -2,15 +2,16 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
-from members.views import LandingPage
+from apps.members.views import LandingPage
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.views import PasswordChangeView, PasswordChangeDoneView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('members/', include("members.urls", namespace="members")),
-    path('wallpaper/', include("wallpaper.urls", namespace="wallpaper")),
-    path('reports/', include("reports.urls", namespace="reports")),
+    path('members/', include("apps.members.urls", namespace="members")),
+    path('wallpaper/', include("apps.wallpaper.urls", namespace="wallpaper")),
+    path('reports/', include("apps.reports.urls", namespace="reports")),
+    path('dashboard/', include("apps.dashboard.urls", namespace="dashboard")),
     path('', LandingPage.as_view(), name="landing-page"),
 
     path('password_change/', PasswordChangeView.as_view(), name='password-change'),

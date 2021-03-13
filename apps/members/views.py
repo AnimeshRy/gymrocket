@@ -1,4 +1,3 @@
-from django.http import request
 from django.http.response import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.views.generic import TemplateView, CreateView, UpdateView, DetailView, DeleteView, ListView
@@ -8,9 +7,8 @@ from .forms import AddMemberForm, AddMemberUpdateForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 import dateutil.relativedelta as delta
 from django.urls import reverse
-from wallpaper.models import Wallpaper
-from payments.models import Payments
-from reports.views import export_all
+from apps.wallpaper.models import Wallpaper
+from apps.payments.models import Payments
 
 
 class LandingPage(TemplateView):

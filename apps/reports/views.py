@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 import csv
-from members.models import Member
+from apps.members.models import Member
 from .models import GenerateReportForm
 from django.db.models import Q
+from django.contrib.auth.decorators import login_required
 
 
 def export_all(user_obj):
@@ -22,11 +23,13 @@ def export_all(user_obj):
     return response
 
 
+@login_required
 def export_single(request, pk):
     member = Member.objects.filter(pk=pk)
     return export_all(member)
 
 
+@login_required
 def reports(request):
     if request.method == 'POST':
         form = GenerateReportForm(request.POST)

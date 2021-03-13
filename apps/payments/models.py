@@ -1,5 +1,5 @@
 from django.db import models
-from members.models import Member
+from apps.members.models import Member
 
 
 class Payments(models.Model):

@@ -3,8 +3,10 @@ from django.shortcuts import render
 from .models import Wallpaper, WallpaperForm
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
+from django.contrib.auth.decorators import login_required
 
 
+@login_required
 def set_wallpaper(request):
     if request.method == 'POST':
         form = WallpaperForm(request.POST, request.FILES)

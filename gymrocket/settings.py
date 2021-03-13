@@ -48,10 +48,11 @@ INSTALLED_APPS = [
     'crispy_tailwind',
 
     # local apps
-    'members',
-    'wallpaper',
-    'payments',
-    'reports',
+    'apps.members',
+    'apps.wallpaper',
+    'apps.payments',
+    'apps.reports',
+    'apps.dashboard',
 ]
 
 MIDDLEWARE = [
