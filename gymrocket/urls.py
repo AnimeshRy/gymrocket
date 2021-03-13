@@ -10,6 +10,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('members/', include("members.urls", namespace="members")),
     path('wallpaper/', include("wallpaper.urls", namespace="wallpaper")),
+    path('reports/', include("reports.urls", namespace="reports")),
     path('', LandingPage.as_view(), name="landing-page"),
 
     path('password_change/', PasswordChangeView.as_view(), name='password-change'),

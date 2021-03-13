@@ -17,7 +17,7 @@
             {% if user.is_authenticated %}
           <button class="inline-flex text-white bg-gray-800 border-0 py-2 px-6 focus:outline-none hover:bg-gray-900 rounded text-lg">
             <a href="{% url 'wallpaper:change' %}">Wallpaper</a></button>
-          <button class="ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg"> <a href="#">Members</a></button>
+          <button class="ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg"> <a href="{% url 'members:member-list' %}">Members</a></button>
           {% else %}
           <button class="inline-flex text-white bg-gray-800 border-0 py-2 px-6 focus:outline-none hover:bg-gray-900 rounded text-lg">
             <a href="{% url 'login' %}">LogIn</a></button>
