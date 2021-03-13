@@ -6,7 +6,17 @@
 {% block title %}- Reports
 {% endblock title %}
 
-{% block content %} 
+{% block content %}
+
+<div class="bg-blue-100 text-blue-700 px-4 py-3 mt-3 mb-2 hidden" role="alert" id="alert-div">
+  <p class="font-bold text-center">You can't view and export the query together</p>
+  <p class="text-sm text-center">If you viewed query, reload and select export this time.</p>
+</div>
+<div class="flex justify-end">
+  <button class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow mt-2 mt-2" title="Reload" id="reloadBtn">
+    Reload</button>
+</div>
+
 <div class="max-w-3xl mx-auto">
   <div class="flex justify-center">
     <h2 class="mt-3 mb-4 text-4xl leading-7 text-gray-900 sm:text-3xl sm:truncate font-mono">
@@ -16,7 +26,8 @@
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form|crispy }}
-        <button class="mb-5 w-full bg-gray-800 hover:bg-gray-900 px-3 py-2 rounded-md text-white" type="submit">Fetch Query</button>
+        <button class="mb-5 w-full bg-gray-800 hover:bg-gray-900 px-3 py-2 rounded-md text-white" type="submit">View Query</button>
+        <button class="mb-5 w-full bg-gray-800 hover:bg-gray-900 px-3 py-2 rounded-md text-white" type="submit" id="export" name="export">Export</button>
     </form>
 
 
@@ -128,5 +139,14 @@
   let reportsMobile = document.getElementById('reports-mobile')
   reports.classList.add('bg-gray-900','text-white')
   reportsMobile.classList.add('bg-gray-900','text-white')
+
+  let reloadBtn = document.getElementById('reloadBtn');
+  reloadBtn.onclick = () => location.reload()
+
+  let exportBtn = document.getElementById('export')
+  exportBtn.addEventListener('click', function () {
+  document.getElementById('alert-div').classList.toggle('hidden')
+  })
+
 </script>
 {% endblock script %}

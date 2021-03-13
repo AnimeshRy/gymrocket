@@ -1,8 +1,25 @@
 from django.shortcuts import render, redirect
-from members.models import Member
+from django.http import HttpResponse
 import csv
+from members.models import Member
 from .models import GenerateReportForm
 from django.db.models import Q
+
+
+def export_all(user_obj):
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="users.csv"'
+    writer = csv.writer(response)
+    writer.writerow(['First name', 'Last name', 'DOB', 'Mobile',
+                     'Admission Date', 'Subscription Type', 'Batch'])
+    # print(user_obj)
+    members = user_obj.values_list('first_name', 'last_name', 'dob',
+                                   'mobile_number', 'admitted_on', 'subscription_type', 'batch')
+    # print(members)
+    for user in members:
+        writer.writerow(user)
+
+    return response
 
 
 def reports(request):
@@ -35,6 +52,8 @@ def reports(request):
                     registration_date__year=request.POST.get('year'),
                 )
             users = Member.objects.filter(query)
+            if 'export' in request.POST:
+                return export_all(users)
             context = {
                 'users': users,
                 'form': form,
