@@ -22,6 +22,11 @@ def export_all(user_obj):
     return response
 
 
+def export_single(request, pk):
+    member = Member.objects.filter(pk=pk)
+    return export_all(member)
+
+
 def reports(request):
     if request.method == 'POST':
         form = GenerateReportForm(request.POST)

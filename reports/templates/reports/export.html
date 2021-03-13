@@ -8,7 +8,7 @@
 
 {% block content %}
 
-<div class="bg-blue-100 text-blue-700 px-4 py-3 mt-3 mb-2 hidden" role="alert" id="alert-div">
+<div class="transition duration-300 ease-in-out transform visible:-translate-y-1 hover:scale-90 bg-blue-100 text-blue-700 px-4 py-3 mt-3 mb-2 hidden" role="alert" id="alert-div">
   <p class="font-bold text-center">You can't view and export the query together</p>
   <p class="text-sm text-center">If you viewed query, reload and select export this time.</p>
 </div>
@@ -27,7 +27,7 @@
         {% csrf_token %}
         {{ form|crispy }}
         <button class="mb-5 w-full bg-gray-800 hover:bg-gray-900 px-3 py-2 rounded-md text-white" type="submit">View Query</button>
-        <button class="mb-5 w-full bg-gray-800 hover:bg-gray-900 px-3 py-2 rounded-md text-white" type="submit" id="export" name="export">Export</button>
+        <button class="mb-5 w-full bg-red-500 hover:bg-red-600 px-3 py-2 rounded-md text-white" type="submit" id="export" name="export">Export</button>
     </form>
 
 
@@ -141,11 +141,15 @@
   reportsMobile.classList.add('bg-gray-900','text-white')
 
   let reloadBtn = document.getElementById('reloadBtn');
-  reloadBtn.onclick = () => location.reload()
+  reloadBtn.onclick = () => location.reload();
 
-  let exportBtn = document.getElementById('export')
+  let alertDiv = document.getElementById('alert-div');
+  let exportBtn = document.getElementById('export');
   exportBtn.addEventListener('click', function () {
-  document.getElementById('alert-div').classList.toggle('hidden')
+    alertDiv.classList.toggle('hidden');
+  setTimeout(() => {
+    alertDiv.classList.toggle('hidden');
+  }, 10000);
   })
 
 </script>

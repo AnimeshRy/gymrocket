@@ -153,8 +153,9 @@
                         </div>
                     </div>
                 </div>
-                <button
-                    class="block w-full text-blue-800 text-sm font-semibold rounded-lg hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3 my-4"><a href="#">Export</a></button>
+                    <button
+                    class="block w-full text-blue-800 text-sm font-semibold rounded-lg hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3 my-4" id="export" name="export"><a href="{% url 'reports:export-single' member.pk %}">Export</a></button>
+
             </div>
             {% if member_payment == 'No Records' %}
             <div class="bg-blue-100 text-blue-700 px-4 py-3 rounded" role="alert">
