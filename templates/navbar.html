@@ -35,7 +35,7 @@
         <div class="hidden sm:block sm:ml-6">
           <div class="flex space-x-4" id="nav">
             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-            <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Dashboard</a>
+            <a href="{% url 'dashboard:base' %}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" id="dashboard-a">Dashboard</a>
             <a href="{% url 'members:add-member' %}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" id="add-mem">New Member</a>
             <a href="{% url 'members:member-list' %}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" id="view-mem">Members</a>
             <a href="{% url 'reports:gen-reports' %}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" id="reports">Reports</a>
@@ -67,16 +67,18 @@
   </div>
 
   <!-- Mobile menu, show/hide based on menu state. -->
+  {% if user.is_authenticated %}
   <div class="hidden" id="mobile-menu">
     <div class="px-2 pt-2 pb-3 space-y-1">
       <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-      <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Dashboard</a>
+      <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium" id="dashboard-mobile">Dashboard</a>
       <a href="{% url 'members:add-member' %}" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium" id="add-mem-mobile">New Member</a>
       <a href="{% url 'members:member-list' %}" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium" id="view-mem-mobile">Members</a>
       <a href="{% url 'reports:gen-reports' %}" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium" id="reports-mobile">Reports</a>
       <a href="{% url 'password-change' %}" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium" id="change-pass-mobile">Change Password</a>
     </div>
   </div>
+  {% endif %}
 </nav>
 
 {% block script %}

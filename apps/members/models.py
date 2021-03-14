@@ -95,5 +95,9 @@ class Member(models.Model):
         today = date.today()
         return today.year - self.dob.year - ((today.month, today.day) < (self.dob.month, self.dob.day))
 
+    @property
+    def get_month(self):
+        return int(self.registration_date.strftime("%m"))
+
     def __str__(self):
         return self.first_name + ' ' + self.last_name

@@ -2,7 +2,6 @@ from django.http.response import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.views.generic import TemplateView, CreateView, UpdateView, DetailView, DeleteView, ListView
 from .models import Member
-from django.contrib.auth.decorators import login_required
 from .forms import AddMemberForm, AddMemberUpdateForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 import dateutil.relativedelta as delta
@@ -35,6 +34,7 @@ def view_members(request):
 class MemberListView(LoginRequiredMixin, ListView):
     template_name = 'members/view_members.html'
     context_object_name = 'data'
+    paginate_by = 8
 
     def get_queryset(self):
         members = Member.objects.filter(stop=0).order_by('first_name')
