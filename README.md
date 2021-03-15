@@ -7,8 +7,12 @@
 <a href="https://github.com/AnimeshRy/gymrocket/issues"><img alt="GitHub issues" src="https://img.shields.io/github/issues/AnimeshRy/gymrocket"></a>
 <a href="https://github.com/AnimeshRy/gymrocket/network"><img alt="GitHub forks" src="https://img.shields.io/github/forks/AnimeshRy/gymrocket"></a>
 
-[![demo gymrocket](images/gif-gymrocket.gif)](https://youtu.be/rCxIc5Z1YAA)
 
+<p align="center">
+    <a href="https://youtu.be/rCxIc5Z1YAA">
+  <img width="460" height="300" src="images/gif-gymrocket.gif">
+    </a>
+</p>
 
 ## ⚡ Features
 
