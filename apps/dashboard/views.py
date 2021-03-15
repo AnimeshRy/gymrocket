@@ -54,7 +54,7 @@ def dashboard(request):
         "total_revenue_till_date": total_revenue_till_date,
         "pending_payment_members": pending_payment_members,
         "pending_payment_members_this_month": pending_payment_members_this_month,
-        "avg_revenue": avg_revenue
+        "avg_revenue": round(avg_revenue, 2)
     }
     return render(request, "dashboard/board.html", context=context)
 
