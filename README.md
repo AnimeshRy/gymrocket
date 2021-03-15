@@ -108,7 +108,6 @@ Admin endpoint is at http://127.0.0.1:8000/admin/
 This project is licensed under the MIT License - see the [LICENSE.md](./LICENSE) file for details
 
 
-
 ## For the Future 
 If you want to **contribute** and make this much better for people, you are open to fork and develop it as your own.
 
