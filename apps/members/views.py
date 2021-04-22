@@ -11,6 +11,7 @@ from apps.payments.models import Payments
 
 
 class LandingPage(TemplateView):
+    # Landing Page - CRUD wallpaper model
     template_name = "landing_page.html"
 
     def get_context_data(self, *args, **kwargs):
@@ -24,14 +25,10 @@ class LandingPage(TemplateView):
         return context
 
 
-def view_members(request):
-    data = Member.objects.filter(stop=0).order_by('first_name')
-    return render(request, "members/view_members.html", {
-        'data': data
-    })
-
-
 class MemberListView(LoginRequiredMixin, ListView):
+    """ Login Required -  List Member by first_name
+        Also show stopped members to undo changes
+    """
     template_name = 'members/view_members.html'
     context_object_name = 'data'
     paginate_by = 8
@@ -44,7 +41,6 @@ class MemberListView(LoginRequiredMixin, ListView):
         context = super().get_context_data(**kwargs)
         stopped_members = Member.objects.filter(stop=1).order_by('first_name')
         if stopped_members.exists():
-            print('yes')
             context.update({
                 'stopped_member_data': stopped_members
             })
@@ -52,6 +48,10 @@ class MemberListView(LoginRequiredMixin, ListView):
 
 
 class AddMemberView(LoginRequiredMixin, CreateView):
+    """ Login Required - Add new member view with 'AddMemberForm' form class
+        form_valid method extract relative date form subscription_period and extends registration_upto data accordingly
+        Generates a Payment Model Object if status is set to paid
+    """
     template_name = 'members/add_member.html'
     form_class = AddMemberForm
 
@@ -74,6 +74,9 @@ class AddMemberView(LoginRequiredMixin, CreateView):
 
 
 class MemberDetailView(LoginRequiredMixin, DetailView):
+    """ Login Required - Detail View to show personal and medical information of Member
+        Also Displays any payment history if available
+    """
     template_name = 'members/member_detail.html'
     context_object_name = 'member'
     queryset = Member.objects.all()
@@ -90,6 +93,10 @@ class MemberDetailView(LoginRequiredMixin, DetailView):
 
 
 class UpdateMemberView(LoginRequiredMixin, UpdateView):
+    """ Login Required - Update Selected Member Data
+        Reset relative data accordingly
+        Checks for existing payment information with new data and creates if the new data has no record
+    """
     template_name = 'members/update_member.html'
     form_class = AddMemberUpdateForm
     queryset = Member.objects.all()
@@ -117,6 +124,7 @@ class UpdateMemberView(LoginRequiredMixin, UpdateView):
 
 
 class DeleteMemberView(LoginRequiredMixin, DeleteView):
+    """ Delete Member Data """
     template_name = 'members/member_delete.html'
     queryset = Member.objects.all()
 

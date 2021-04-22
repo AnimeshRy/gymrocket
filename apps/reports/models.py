@@ -19,6 +19,7 @@ MONTHS_CHOICES = tuple(
 
 
 class GenerateReports(models.Model):
+    # Reports model to generate reports according to year, month and batch
     month = models.IntegerField(
         choices=MONTHS_CHOICES, default=datetime.datetime.now().year, blank=True)
     year = models.IntegerField(
@@ -31,6 +32,7 @@ class GenerateReports(models.Model):
 
 
 class GenerateReportForm(ModelForm):
+    # Report Form
     class Meta:
         model = GenerateReports
         fields = '__all__'

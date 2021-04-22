@@ -3,6 +3,7 @@ from .models import Member
 
 
 class AddMemberForm(forms.ModelForm):
+    # Add new Member form
     class Meta:
         model = Member
         fields = '__all__'
@@ -17,6 +18,7 @@ class AddMemberForm(forms.ModelForm):
         }
 
     def clean_mobile_number(self, *args, **kwargs):
+        # Check for mobile number and return Validation Error if incorrect
         mobile_number = self.cleaned_data.get('mobile_number')
         if not mobile_number.isdigit():
             raise forms.ValidationError('Mobile number should be a number')
@@ -32,12 +34,14 @@ class AddMemberForm(forms.ModelForm):
         return mobile_number
 
     def clean_amount(self):
+        # Clean money amount
         amount = self.cleaned_data.get('amount')
         if not amount.isdigit():
             raise forms.ValidationError('Amount should be a number')
         return amount
 
     def clean(self):
+        # Check for already existing member
         cleaned_data = super().clean()
         dob = cleaned_data.get('dob')
         first_name = cleaned_data.get('first_name').capitalize()
@@ -52,6 +56,7 @@ class AddMemberForm(forms.ModelForm):
 
 
 class AddMemberUpdateForm(forms.ModelForm):
+    # Update Member form without registration_upto date
     class Meta:
         model = Member
         fields = '__all__'

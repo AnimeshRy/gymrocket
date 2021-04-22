@@ -47,6 +47,7 @@ GENDER = (
 
 
 class Member(models.Model):
+    """ Initial Member Model """
     member_id = models.AutoField(primary_key=True)
     first_name = models.CharField(('First Name'), max_length=50)
     last_name = models.CharField(('Last Name'), max_length=50)

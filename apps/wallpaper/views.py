@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 
 @login_required
 def set_wallpaper(request):
+  # Wallpaper Change Route in Base URL
     if request.method == 'POST':
         form = WallpaperForm(request.POST, request.FILES)
         if form.is_valid():

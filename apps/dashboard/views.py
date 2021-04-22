@@ -37,6 +37,9 @@ month_dictionary = {
 
 @login_required
 def dashboard(request):
+    """
+    Display Analaytics based on Payments and Member Data
+    """
     total_revenue_till_date = Payments.objects.aggregate(
         Sum('payment_amount')).get('payment_amount__sum')
     total_members = Member.objects.filter(stop=0).count()
@@ -61,6 +64,7 @@ def dashboard(request):
 
 @login_required
 def member_chart(request):
+  # Chart based on Member Data consumed by Chart JS on the frontend
     data = []
     labels = []
     recent_months = [today.month - 3, today.month - 2, today.month -
@@ -78,6 +82,7 @@ def member_chart(request):
 
 @login_required
 def payment_chart(request):
+    # Chart based on Payment Data consumed by Chart JS on the frontend
     data = []
     labels = []
     recent_months = [today.month - 6, today.month - 5, today.month - 4, today.month - 3, today.month - 2, today.month -

@@ -70,6 +70,7 @@ ROOT_URLCONF = 'gymrocket.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        # root templates included
         'DIRS': [
             BASE_DIR / "templates",
         ],
