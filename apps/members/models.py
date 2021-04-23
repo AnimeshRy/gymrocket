@@ -61,9 +61,9 @@ class Member(models.Model):
         ('Medical History'), max_length=300, blank=True, default='None')
     admitted_on = models.DateField(auto_now_add=True)
     registration_date = models.DateField(
-        ('Registration Date'), default='dd/mm/yyyy')
+        ('Registration Date'))
     registration_upto = models.DateField()
-    dob = models.DateField(default='dd/mm/yyyy')
+    dob = models.DateField()
     subscription_type = models.CharField(
         ('Subscription Type'),
         max_length=30,
