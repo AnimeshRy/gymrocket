@@ -1,4 +1,4 @@
-<p align="center"><a href="https://github.com/rahuldkjain/minimal-portfolio"><img src="images/logo.png" height="140" alt="Personal Porfolio for developers"/></a></p>
+<p align="center"><img src="images/logo.png" height="140" alt="logo"/></p>
 <h1 align="center">💪 GymRocket</h1>
 <p align="center">The open source manager app specifically designed for gymnasiums.</p>
 <p align="center">
@@ -64,7 +64,7 @@ $ pip install -r requirements.txt
 
 ## 📨 Environment Setup 
 ```bash
-# You need some environment variables to setup.
+# You'll need some environment variables to setup.
 touch .env
 # replace string with a random string
 SECRET_KEY={string}
